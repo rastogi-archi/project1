@@ -2,11 +2,11 @@ import { useLocation, Navigate } from "react-router-dom";
 
 import React, { Children } from 'react'
 
-const chechAuth = ({ isAuthenticated, Children }) => {
+const CheckAuth = ({ isAuthenticated, Children }) => {
     const location = useLocation();
     if (location.pathname === "/") {
         if (!isAuthenticated) {
-            return <Navigate to="/auth/login" />;
+            return <Navigate to="/login" />;
         }
     }
     if (
@@ -16,7 +16,7 @@ const chechAuth = ({ isAuthenticated, Children }) => {
             location.pathname.includes("/register")
         )
     ) {
-        return <Navigate to="/auth/login" />;
+        return <Navigate to="/login" />;
     }
     if (
         isAuthenticated &&
@@ -31,4 +31,4 @@ const chechAuth = ({ isAuthenticated, Children }) => {
         </>
     )
 }
-export default chechAuth
+export default CheckAuth

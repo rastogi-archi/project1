@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LoginRegisterLeft from '../../common/LoginRegisterLeft';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/authSlice';
 import toast from "react-hot-toast";
@@ -13,6 +13,7 @@ const Login = () => {
 
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,6 +29,7 @@ const Login = () => {
             if (data?.payload?.success) {
                 toast(data?.payload?.message);
                 setFormData(initialState);
+                navigate("/home");
             } else {
                 toast(data?.payload?.message);
             }
